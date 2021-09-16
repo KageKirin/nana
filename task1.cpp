@@ -65,6 +65,7 @@ int main()
 
         if (choice != 0)
         {
+            cout << "Updating bin #" << choice << std::endl;
             updateBin(bins, choice - 1);
         }
 
