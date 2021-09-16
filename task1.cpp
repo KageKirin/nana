@@ -51,19 +51,19 @@ int main()
     {
         // Display the contents of each bin as a menu.
 
-        cout << "Inventory Bins:\n ";
+        cout << "Inventory Bins:" << std::endl;
         for (int bin = 0; bin < NUM_BINS; bin++)
         {
             cout << "Bin # " << setw(3) << (bin + 1);
-            cout << ",Part: " /*<<setw(14)*/ << bins[bin].description;
-            // cout<<",Quantity: "<<bins[bin].num;
-            cout << "\n";
+            cout << ", Part: " /*<<setw(14)*/ << bins[bin].description;
+            cout << ", Quantity: " << bins[bin].number;
+            cout << "" << std::endl;
         }
 
-        cout << "\nEnter 0 to quit or choose a bin number: ";
+        cout << "Enter 0 to quit or choose a bin number: " << std::endl;
         cin >> choice;
 
-        while (choice < 10 || choice > NUM_BINS)
+        while (choice && (choice < 10 || choice > NUM_BINS))
         {
             cout << "\nEnter 0 to quit or choose a bin number: ";
             cin >> choice;
