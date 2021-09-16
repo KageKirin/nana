@@ -88,7 +88,7 @@ void updateBin(InventoryBin bins[], int choice)
     cout << "Add or Remove parts (A or R):";
     cin >> aorr;
 
-    while (toupper(aorr) != 'A' && toupper(aorr) != 'B')
+    while (toupper(aorr) != 'A' && toupper(aorr) != 'R')
     {
         cout << "Enter A or R:";
         cin >> aorr;
@@ -149,6 +149,7 @@ void addParts(InventoryBin &bin, int numAdd)
 // Note the use of the C++ reference type to pass the        *
 // InventoryBin structure to the function.                   *
 //************************************************************
+
 void removeParts(InventoryBin &bin, int numRem)
 {
     // Validate the number of parts and remove them
