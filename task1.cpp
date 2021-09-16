@@ -63,12 +63,6 @@ int main()
         cout << "Enter 0 to quit or choose a bin number: " << std::endl;
         cin >> choice;
 
-        while (choice && (choice < 10 || choice > NUM_BINS))
-        {
-            cout << "\nEnter 0 to quit or choose a bin number: ";
-            cin >> choice;
-        }
-
         if (choice != 0)
         {
             updateBin(bins, choice - 1);
