@@ -2,12 +2,12 @@
 // This was my task from last week.
 // I was only able to display the parts but not the quantity so I put `//` over the line for quantity
 // or it wont even run.
-// It wont progress further then "Enter zero to quit or choose.." 
+// It wont progress further then "Enter zero to quit or choose.."
 
-#include <iostream>
-#include <iomanip>
-#include <string>
 #include <cctype>
+#include <iomanip>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -17,10 +17,8 @@ static const int NUM_BINS = 10;
 // Declaration of the InventoryBin structure
 struct InventoryBin
 {
-  string description;
-  int number;
-
-    
+    string description;
+    int    number;
 };
 
 // Function prototypes
@@ -36,47 +34,44 @@ int main()
     // Declare and intitialize an array of InventoryBin structures. For this
     // exercise, we'll use a standard 'C' style array but take advantage of
     // the C++ initializer list to set the initial values of the structures.
-    
+
     // Remove this comment wrapper after coding the InventoryBin structure
-    InventoryBin bins[NUM_BINS] =
-    {
-        {"Valve", 10},
-        {"Bearing", 5},
-        {"Bushing", 15},
-        {"Coupling", 21},
-        {"Flange", 7},
-        {"Gear", 5},
-        {"Gear Housing", 5},
-        {"Vacuum Gripper", 25},
-        {"Cable", 18},
-        {"Rod", 12}
-    };
+    InventoryBin bins[NUM_BINS] = {{"Valve", 10},
+                                   {"Bearing", 5},
+                                   {"Bushing", 15},
+                                   {"Coupling", 21},
+                                   {"Flange", 7},
+                                   {"Gear", 5},
+                                   {"Gear Housing", 5},
+                                   {"Vacuum Gripper", 25},
+                                   {"Cable", 18},
+                                   {"Rod", 12}};
 
     do
     {
         // Display the contents of each bin as a menu.
 
-        cout<<"Inventory Bins:\n ";
-        for (int bin=0;bin<NUM_BINS;bin++){
-          cout<<"Bin # "<<setw(3)<<(bin+1);
-          cout<<",Part: "/*<<setw(14)*/<<bins[bin].description;
-          //cout<<",Quantity: "<<bins[bin].num;
-          cout<<"\n";
-
+        cout << "Inventory Bins:\n ";
+        for (int bin = 0; bin < NUM_BINS; bin++)
+        {
+            cout << "Bin # " << setw(3) << (bin + 1);
+            cout << ",Part: " /*<<setw(14)*/ << bins[bin].description;
+            // cout<<",Quantity: "<<bins[bin].num;
+            cout << "\n";
         }
 
-        cout<<"\nEnter 0 to quit or choose a bin number: ";
-        cin>>choice;
+        cout << "\nEnter 0 to quit or choose a bin number: ";
+        cin >> choice;
 
-        while(choice<10 || choice> NUM_BINS)
+        while (choice < 10 || choice > NUM_BINS)
         {
-          cout<<"\nEnter 0 to quit or choose a bin number: ";
-          cin>>choice;
+            cout << "\nEnter 0 to quit or choose a bin number: ";
+            cin >> choice;
         }
 
-        if(choice!= 0)
+        if (choice != 0)
         {
-          updateBin(bins,choice - 1);
+            updateBin(bins, choice - 1);
         }
 
     } while (choice != 0);
@@ -87,37 +82,38 @@ int main()
 //*********************************************************
 // Function updateBin                                     *
 // This function lets the user choose whether to add or   *
-// remove parts from the bin bins[Choice].                   *
+// remove parts from the bin bins[Choice].                *
 //*********************************************************
+
 void updateBin(InventoryBin bins[], int choice)
 {
-  int numParts;
-  char aorr;
+    int  numParts;
+    char aorr;
 
-  cout<<"Add or Remove parts (A or R):";
-  cin>>aorr;
+    cout << "Add or Remove parts (A or R):";
+    cin >> aorr;
 
-  while(toupper(aorr)!='A'&&toupper(aorr)!='B')
-  {
-    cout<<"Enter A or R:";
-    cin>>aorr;
-  }
+    while (toupper(aorr) != 'A' && toupper(aorr) != 'B')
+    {
+        cout << "Enter A or R:";
+        cin >> aorr;
+    }
 
-  if(toupper(aorr)=='A')
-  {
-    cout<<"How many parts to add?";
-    cin>>numParts;
+    if (toupper(aorr) == 'A')
+    {
+        cout << "How many parts to add?";
+        cin >> numParts;
 
-    addParts(bins[choice],numParts);
-  }
+        addParts(bins[choice], numParts);
+    }
 
-  else
-  {
-    cout<<"How many parts to remove?";
-    cin>>numParts;
+    else
+    {
+        cout << "How many parts to remove?";
+        cin >> numParts;
 
-    removeParts(bins[choice],numParts);
-  }
+        removeParts(bins[choice], numParts);
+    }
 }
 
 //***********************************************************
@@ -128,24 +124,25 @@ void updateBin(InventoryBin bins[], int choice)
 // Note the use of the C++ reference type to pass the       *
 // InventoryBin structure to the function.                  *
 //***********************************************************
-void addParts(InventoryBin & bin, int numAdd)
+
+void addParts(InventoryBin &bin, int numAdd)
 {
     // Validate the number of parts and add them
     // if the number is valid.
-    if (numAdd <0)
+    if (numAdd < 0)
     {
-      cout<<"\n**Error: Add positive values.\n";
+        cout << "\n**Error: Add positive values.\n";
     }
 
-    else if(numAdd + bin.num > 30)
+    else if (numAdd + bin.num > 30)
     {
-      cout<<"\n** Error: the bin can only hold 30 parts.\n";
+        cout << "\n** Error: the bin can only hold 30 parts.\n";
     }
 
     else
     {
-      bin.num += numAdd;
-      cout<<"\n** Success: parts were added to the bin.\n";
+        bin.num += numAdd;
+        cout << "\n** Success: parts were added to the bin.\n";
     }
 }
 
@@ -157,7 +154,7 @@ void addParts(InventoryBin & bin, int numAdd)
 // Note the use of the C++ reference type to pass the        *
 // InventoryBin structure to the function.                   *
 //************************************************************
-void removeParts(InventoryBin & bin, int numRem)
+void removeParts(InventoryBin &bin, int numRem)
 {
     // Validate the number of parts and remove them
     // if the number is valid.
