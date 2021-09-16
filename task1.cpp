@@ -134,14 +134,14 @@ void addParts(InventoryBin &bin, int numAdd)
         cout << "\n**Error: Add positive values.\n";
     }
 
-    else if (numAdd + bin.num > 30)
+    else if (numAdd + bin.number > 30)
     {
         cout << "\n** Error: the bin can only hold 30 parts.\n";
     }
 
     else
     {
-        bin.num += numAdd;
+        bin.number += numAdd;
         cout << "\n** Success: parts were added to the bin.\n";
     }
 }
