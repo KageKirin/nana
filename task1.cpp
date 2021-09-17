@@ -9,7 +9,6 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
 
 // Constants for array size
 static const int NUM_BINS = 10;
@@ -17,8 +16,8 @@ static const int NUM_BINS = 10;
 // Declaration of the InventoryBin structure
 struct InventoryBin
 {
-    string description;
-    int    number;
+    std::string description;
+    int         number;
 };
 
 // Function prototypes
@@ -51,21 +50,21 @@ int main()
     {
         // Display the contents of each bin as a menu.
 
-        cout << "Inventory Bins:" << std::endl;
+        std::cout << "Inventory Bins:" << std::endl;
         for (int bin = 0; bin < NUM_BINS; bin++)
         {
-            cout << "Bin # " << setw(3) << (bin + 1);
-            cout << ", Part: " /*<<setw(14)*/ << bins[bin].description;
-            cout << ", Quantity: " << bins[bin].number;
-            cout << "" << std::endl;
+            std::cout << "Bin # " << std::setw(3) << (bin + 1);
+            std::cout << ", Part: " /*<<std::setw(14)*/ << bins[bin].description;
+            std::cout << ", Quantity: " << bins[bin].number;
+            std::cout << "" << std::endl;
         }
 
-        cout << "Enter 0 to quit or choose a bin number: " << std::endl;
-        cin >> choice;
+        std::cout << "Enter 0 to quit or choose a bin number: " << std::endl;
+        std::cin >> choice;
 
         if (choice != 0)
         {
-            cout << "Updating bin #" << choice << std::endl;
+            std::cout << "Updating bin #" << choice << std::endl;
             updateBin(bins, choice - 1);
         }
 
@@ -85,27 +84,27 @@ void updateBin(InventoryBin bins[], int choice)
     int  numParts;
     char aorr;
 
-    cout << "Add or Remove parts (A or R):";
-    cin >> aorr;
+    std::cout << "Add or Remove parts (A or R):";
+    std::cin >> aorr;
 
     while (toupper(aorr) != 'A' && toupper(aorr) != 'R')
     {
-        cout << "Enter A or R:";
-        cin >> aorr;
+        std::cout << "Enter A or R:";
+        std::cin >> aorr;
     }
 
     if (toupper(aorr) == 'A')
     {
-        cout << "How many parts to add?";
-        cin >> numParts;
+        std::cout << "How many parts to add?";
+        std::cin >> numParts;
 
         addParts(bins[choice], numParts);
     }
 
     else
     {
-        cout << "How many parts to remove?";
-        cin >> numParts;
+        std::cout << "How many parts to remove?";
+        std::cin >> numParts;
 
         removeParts(bins[choice], numParts);
     }
@@ -126,18 +125,18 @@ void addParts(InventoryBin &bin, int numAdd)
     // if the number is valid.
     if (numAdd < 0)
     {
-        cout << "\n**Error: Add positive values.\n";
+        std::cout << "\n**Error: Add positive values.\n";
     }
 
     else if (numAdd + bin.number > 30)
     {
-        cout << "\n** Error: the bin can only hold 30 parts.\n";
+        std::cout << "\n** Error: the bin can only hold 30 parts.\n";
     }
 
     else
     {
         bin.number += numAdd;
-        cout << "\n** Success: parts were added to the bin.\n";
+        std::cout << "\n** Success: parts were added to the bin.\n";
     }
 }
 
